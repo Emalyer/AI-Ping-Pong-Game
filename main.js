@@ -28,14 +28,24 @@ function setup(){
   video.size(600,300);
 
   poseNet=ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose',gotPoses)
+  video.parent()
 }
 
 function modelLoaded(){
   console.log("Model is Loaded")
 }
 
-function draw(){
+function gotPoses(reults){
+  if(results.length>0){
+  console.log(result);
+  wristX=results=[0].pose.wrist.x
+  wristY=results=[0].pose.wrist.y
+  }
+}
 
+function draw(){
+  game();
  background(0); 
 
  fill("black");
